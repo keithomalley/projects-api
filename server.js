@@ -11,6 +11,7 @@ app.configure(function (){
   app.use(express.bodyParser());
 });
 
+app.get('/', projects.findAll);
 app.get('/projects', projects.findAll);
 app.get('/projects/:id', projects.findById);
 app.post('/projects', projects.addProject);
