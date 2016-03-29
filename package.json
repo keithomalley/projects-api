@@ -2,7 +2,6 @@
   "name": "portfolio-app",
   "description": "Portfolio Application",
   "version": "0.0.1",
-  "private": true,
   "author": "Keith O'Malley",
   "dependencies": {
     "cors": "^2.7.1",

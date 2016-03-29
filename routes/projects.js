@@ -1,23 +1,38 @@
+// import mongodb
 var mongo = require('mongodb');
 
-var Server = mongo.Server,
-  Db = mongo.Db;
+// import mongodb server and database functionalty
+var Server = mongo.Server, Db = mongo.Db;
+// import BSON to parse data
 var BSON = require('bson').BSONPure;
 
+// create a new Server and Database
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('projectsdb', server);
 
+// open a connection to the database
 db.open(function(err, db) {
   if(!err){
     console.log("Connected to database");
+    // get the projects collection from the database...
     db.collection('projects', {strict:true}, function(err, collection){
       if(err){
+        //... or run the function to create if it does not exist
         console.log("The projects collection does not exist");
         populateDB();
       }
     });
   }
 });
+
+
+
+/* ============================ CRUD FUNCTIONS =================================
+
+ These next set of functions export basic CRUD functionality to the object we
+ return in the index.js when setting up routes.
+
+============================================================================= */
 
 exports.findAll = function(req, res){
   db.collection('projects', function(err, collection){
@@ -88,7 +103,12 @@ exports.deleteProject = function(req, res){
 
 
 
-/*=========================================================*/
+/* =============================================================================
+    Seed data for the database, also creates the projects collection
+    if it does not already exist
+============================================================================= */
+
+
 
 var populateDB = function(){
   var projects = [
