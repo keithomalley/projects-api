@@ -3,7 +3,9 @@
   "description": "Portfolio Application",
   "version": "0.0.1",
   "private": true,
+  "author": "Keith O'Malley",
   "dependencies": {
+    "cors": "^2.7.1",
     "express": "3.x",
     "mongodb": "^2.1.10"
   }

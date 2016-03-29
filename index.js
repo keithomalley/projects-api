@@ -1,12 +1,15 @@
 var express = require('express'),
-  projects = require('./routes/projects');
+  projects = require('./routes/projects'),
+  cors = require('cors');
 
 var app = express();
 
 app.configure(function (){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
+  app.use(cors());
 });
+
 
 app.get('/', projects.findAll);
 app.get('/projects', projects.findAll);
